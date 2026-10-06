@@ -12,7 +12,7 @@ export default function LoginPage() {
   return (
     <AuthCard
       title="Bienvenido de nuevo"
-      subtitle="Inicia sesión para continuar gestionando tu presencia digital."
+      subtitle="Inicia sesión para continuar construyendo tu presencia digital."
     >
       <LoginForm />
     </AuthCard>

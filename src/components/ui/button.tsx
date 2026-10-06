@@ -45,7 +45,7 @@ export function Button({
       disabled={disabled || loading}
       className={cn(
         "inline-flex h-11 w-full items-center justify-center gap-2 rounded-xl px-4 text-sm font-semibold tracking-tight",
-        "bg-brand text-white shadow-[0_10px_30px_-12px_rgba(46,125,255,0.85)]",
+        "bg-brand text-white shadow-[0_10px_28px_-16px_rgba(46,125,255,0.55)]",
         "transition duration-200 hover:bg-brand-strong active:translate-y-px",
         "focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-brand-soft",
         "disabled:cursor-not-allowed disabled:opacity-60 disabled:shadow-none",
