@@ -37,3 +37,48 @@ export function getLoginErrorMessage(error: AuthErrorLike): string {
 
   return "No se pudo iniciar sesión. Revisa tus datos e inténtalo de nuevo.";
 }
+
+export function getRegisterErrorMessage(error: AuthErrorLike): string {
+  const code = (error.code ?? "").toLowerCase();
+  const message = (error.message ?? "").toLowerCase();
+
+  if (
+    code === "email_exists" ||
+    code === "user_already_exists" ||
+    message.includes("already registered") ||
+    message.includes("already been registered")
+  ) {
+    return "Este correo ya está registrado. Intenta iniciar sesión.";
+  }
+
+  if (
+    code === "weak_password" ||
+    code === "password_too_short" ||
+    message.includes("at least 8 characters") ||
+    message.includes("password should be")
+  ) {
+    return "La contraseña debe tener al menos 8 caracteres.";
+  }
+
+  if (message.includes("invalid email")) {
+    return "Introduce un correo electrónico válido.";
+  }
+
+  if (
+    code === "over_request_rate_limited" ||
+    code === "too_many_requests" ||
+    message.includes("rate limit")
+  ) {
+    return "Demasiados intentos. Espera unos minutos y vuelve a intentarlo.";
+  }
+
+  if (
+    message.includes("failed to fetch") ||
+    message.includes("network") ||
+    code === "network_error"
+  ) {
+    return "No se pudo conectar con el servidor. Revisa tu conexión e inténtalo de nuevo.";
+  }
+
+  return "No pudimos crear tu cuenta. Inténtalo nuevamente.";
+}
