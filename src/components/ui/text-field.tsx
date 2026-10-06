@@ -4,16 +4,18 @@ import { cn } from "@/lib/utils";
 type TextFieldProps = InputHTMLAttributes<HTMLInputElement> & {
   label: string;
   error?: string;
+  hint?: string;
   trailing?: ReactNode;
 };
 
 export const TextField = forwardRef<HTMLInputElement, TextFieldProps>(
   function TextField(
-    { label, error, trailing, id, className, ...props },
+    { label, error, hint, trailing, id, className, ...props },
     ref,
   ) {
     const inputId = id ?? props.name;
     const errorId = error ? `${inputId}-error` : undefined;
+    const hintId = hint ? `${inputId}-hint` : undefined;
 
     return (
       <div className="space-y-2">
@@ -29,7 +31,7 @@ export const TextField = forwardRef<HTMLInputElement, TextFieldProps>(
             ref={ref}
             id={inputId}
             aria-invalid={error ? true : undefined}
-            aria-describedby={errorId}
+            aria-describedby={error ? errorId : hintId}
             className={cn(
               "field-input",
               trailing ? "pr-12" : undefined,
@@ -47,6 +49,10 @@ export const TextField = forwardRef<HTMLInputElement, TextFieldProps>(
         {error ? (
           <p id={errorId} className="text-sm text-danger">
             {error}
+          </p>
+        ) : hint ? (
+          <p id={hintId} className="text-xs text-ink-subtle">
+            {hint}
           </p>
         ) : null}
       </div>

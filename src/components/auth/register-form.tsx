@@ -219,98 +219,101 @@ export function RegisterForm() {
   }
 
   return (
-    <form onSubmit={handleSubmit} noValidate className="space-y-5">
-      {formError ? (
-        <div
-          role="alert"
-          className="rounded-xl border border-danger/35 bg-danger/10 px-4 py-3 text-sm text-danger"
-        >
-          {formError}
-        </div>
-      ) : null}
+    <form onSubmit={handleSubmit} noValidate>
+      <div className="space-y-5">
+        {formError ? (
+          <div
+            role="alert"
+            className="rounded-xl border border-danger/35 bg-danger/10 px-4 py-3 text-sm text-danger"
+          >
+            {formError}
+          </div>
+        ) : null}
 
-      <TextField
-        label="Nombre"
-        name="name"
-        type="text"
-        autoComplete="name"
-        placeholder="Tu nombre"
-        value={name}
-        error={fieldErrors.name}
-        disabled={loading}
-        onChange={(event) => {
-          setName(event.target.value);
-          clearFieldError("name");
-        }}
-      />
+        <TextField
+          label="Nombre completo"
+          name="name"
+          type="text"
+          autoComplete="name"
+          placeholder="Ej. Santiago Pérez"
+          value={name}
+          error={fieldErrors.name}
+          disabled={loading}
+          onChange={(event) => {
+            setName(event.target.value);
+            clearFieldError("name");
+          }}
+        />
 
-      <TextField
-        label="Correo electrónico"
-        name="email"
-        type="email"
-        inputMode="email"
-        autoComplete="email"
-        autoCapitalize="none"
-        spellCheck={false}
-        placeholder="tu@correo.com"
-        value={email}
-        error={fieldErrors.email}
-        disabled={loading}
-        onChange={(event) => {
-          setEmail(event.target.value);
-          clearFieldError("email");
-        }}
-      />
+        <TextField
+          label="Correo electrónico"
+          name="email"
+          type="email"
+          inputMode="email"
+          autoComplete="email"
+          autoCapitalize="none"
+          spellCheck={false}
+          placeholder="tu@correo.com"
+          value={email}
+          error={fieldErrors.email}
+          disabled={loading}
+          onChange={(event) => {
+            setEmail(event.target.value);
+            clearFieldError("email");
+          }}
+        />
 
-      <TextField
-        label="Contraseña"
-        name="password"
-        type={showPassword ? "text" : "password"}
-        autoComplete="new-password"
-        placeholder="••••••••"
-        value={password}
-        error={fieldErrors.password}
-        disabled={loading}
-        trailing={
-          <PasswordToggle
-            show={showPassword}
-            label="la contraseña"
-            onToggle={() => setShowPassword((visible) => !visible)}
-          />
-        }
-        onChange={(event) => {
-          setPassword(event.target.value);
-          clearFieldError("password");
-        }}
-      />
+        <TextField
+          label="Contraseña"
+          name="password"
+          type={showPassword ? "text" : "password"}
+          autoComplete="new-password"
+          placeholder="••••••••"
+          hint="Mínimo 8 caracteres"
+          value={password}
+          error={fieldErrors.password}
+          disabled={loading}
+          trailing={
+            <PasswordToggle
+              show={showPassword}
+              label="la contraseña"
+              onToggle={() => setShowPassword((visible) => !visible)}
+            />
+          }
+          onChange={(event) => {
+            setPassword(event.target.value);
+            clearFieldError("password");
+          }}
+        />
 
-      <TextField
-        label="Confirmar contraseña"
-        name="confirmPassword"
-        type={showPasswordConfirm ? "text" : "password"}
-        autoComplete="new-password"
-        placeholder="••••••••"
-        value={confirmPassword}
-        error={fieldErrors.confirmPassword}
-        disabled={loading}
-        trailing={
-          <PasswordToggle
-            show={showPasswordConfirm}
-            label="la confirmación de contraseña"
-            onToggle={() => setShowPasswordConfirm((visible) => !visible)}
-          />
-        }
-        onChange={(event) => {
-          setConfirmPassword(event.target.value);
-          clearFieldError("confirmPassword");
-        }}
-      />
+        <TextField
+          label="Confirmar contraseña"
+          name="confirmPassword"
+          type={showPasswordConfirm ? "text" : "password"}
+          autoComplete="new-password"
+          placeholder="••••••••"
+          value={confirmPassword}
+          error={fieldErrors.confirmPassword}
+          disabled={loading}
+          trailing={
+            <PasswordToggle
+              show={showPasswordConfirm}
+              label="la confirmación de contraseña"
+              onToggle={() => setShowPasswordConfirm((visible) => !visible)}
+            />
+          }
+          onChange={(event) => {
+            setConfirmPassword(event.target.value);
+            clearFieldError("confirmPassword");
+          }}
+        />
+      </div>
 
-      <Button type="submit" loading={loading}>
+      <Button type="submit" loading={loading} className="mt-4">
         {loading ? "Creando cuenta..." : "Crear cuenta"}
       </Button>
 
-      <p className="text-center text-sm text-ink-muted">
+      <p className="mt-3.5 text-center text-sm text-ink-muted">
         ¿Ya tienes una cuenta?{" "}
         <Link
           href="/login"
